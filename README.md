@@ -14,3 +14,14 @@ And then began mocking up a higher fidelity wireframe using Photoshop to explore
 I also created a possible introductory/title screen for the game:
 
 ![intrographic](https://user-images.githubusercontent.com/111005458/216472356-a70bf9a2-8785-47bf-b3a0-d8fc3cc72d9b.jpg)
+
+## General Game Rules
+### MVP
+1. The game will feature visuals of food, that can be clicked
+2. Use JS to build item objects and their ingredients
+3. Create random functions for the delivery of the meal orders to the screen
+4. Use DOM manipulation to present orders to the screen
+5. Validate correct ingredients are selected
+6. Add score (tip) to screen- $5 for complicated order, $3 for single or easy item
+7. At least 5 rounds for this level.
+
