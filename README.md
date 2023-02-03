@@ -25,3 +25,16 @@ I also created a possible introductory/title screen for the game:
 6. Add score (tip) to screen- $5 for complicated order, $3 for single or easy item
 7. At least 5 rounds for this level.
 
+### Stretch Goals
+1. Add a timer
+2. Add an indicator for incorrect ingredient selection (perhaps a red flash)
+3. Add button 'pushing' effects
+4. Add a gloved hand as the mouse clicker
+5. Add addition level(s)
+  - Increased number of items per ticket
+  - timer set for each order
+  - missed orders deduct from total tip
+  - make 'submit' button available for entirety of game
+  - do not indicate when incorrect selections are selected
+  - deduct when incorrect orders placed
+6. Add music or sound effects
