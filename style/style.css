@@ -1,0 +1,254 @@
+body{
+    background-color: #2c3d1c;
+}
+ul{
+    margin-top:0px;
+    padding-left:0;
+}
+li{
+    font-size: 50%;
+    list-style-type: none;
+    padding-left:0;
+
+}
+.grid-container{
+    display:grid;
+    border-radius: 20px;
+    background-color:#2c3d1c;
+    width:90vh;
+    height:95vh;
+    margin: 0 auto;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 20px;
+    padding: 10px 20px;
+ 
+}
+
+.cell{
+    border: 1px solid white;
+    border-radius:20px;
+    background-color: #ffffff;
+}
+
+#current-ingredients{
+    grid-column: 2/span 4;
+    background-color:white;
+    
+}
+/*referenced mdn for slide effect and modified direction*/
+/* @keyframes slidedown {
+    from {
+      margin-top: -5%;
+      width: 100%;
+    }
+  
+    to {
+      margin-top: 7%;
+      width: 100%;
+    }
+  } */
+
+
+
+#upperText{
+    grid-row: 1/span 3;
+    grid-column: 1/span 5;
+    background-image: url('/style/topbackground.png');
+    background-position:center;
+    background-size:110%;
+    border-radius:20px;
+    border: 1px solid white;
+    text-align:center;
+    
+
+}
+
+#upperText p{
+    margin-top:0px;
+    font-family:'Patrick Hand SC', cursive;
+    font-size: 60px;
+    color:white;
+    text-align:center;
+    padding-left:20px;
+    /* animation-duration: 2s;
+    animation-name: slidedown; */
+    
+}
+
+#buttonCell{
+    grid-column: 1/span 3;
+    
+}
+
+#orderUp{
+    width:80%;
+    height:80%;
+    border-radius: 50px;
+    font-size: 50px;
+    background-image: url('/style/orderUpButton.png');
+    background-position: center; 
+    background-size:900px;
+    border: 1px solid white;
+}
+
+#orderUp p{
+    background-color:#ab1400;
+    padding: 0px;
+    width: 50%;
+    text-align:center;
+    margin: 0 auto;
+    color:white;
+    font-family: 'Patrick Hand SC', cursive;
+    border-radius: 50px;
+    font-size: 60px;
+    
+}
+
+#tip{
+    grid-column: 4/span 2;
+    border-radius: 50px;
+    height:80%;
+    background-image: url('/style/tipbackground.png');
+    background-position:center;
+    background-size:900px;
+    border: 1px solid white;
+
+}
+
+#tip p{
+    background-color:#2c3d1c;
+    padding: 0px;
+    width: 80%;
+    text-align:center;
+    margin: 0 auto;
+    color:white;
+    font-size: 50px;
+    margin-top: 4%;
+    padding:4px;
+    font-family: 'Patrick Hand SC', cursive;
+    border-radius: 50px;
+    
+}
+
+#bagel{
+    background-image: url('/style/bagel.png');
+    background-position:center;
+    background-size:60%;
+    background-repeat: no-repeat;
+}
+
+#tomato{
+    background-image: url('/style/tomato.png');
+    background-position:center;
+    background-size:70%;
+    background-repeat: no-repeat;
+}
+
+#lox{
+    background-image: url('/style/lox.png');
+    background-position:center;
+    background-size:90%;
+    background-repeat: no-repeat;
+}
+
+#onion{
+    background-image: url('/style/onion.png');
+    background-position:center;
+    background-size:50%;
+    background-repeat: no-repeat;
+}
+
+#bacon{
+    background-image: url('/style/bacon.png');
+    background-position:center;
+    background-size:100%;
+    background-repeat: no-repeat;
+
+}
+
+#avocado{
+    background-image: url('/style/avocado.png');
+    background-position:center;
+    background-size:55%;
+    background-repeat: no-repeat;
+}
+
+#special-schmear{
+    background-image: url('/style/specialsauce.png');
+    background-position:center;
+    background-size:70%;
+    background-repeat: no-repeat;
+}
+#cream-cheese{
+    background-image: url('/style/creamcheese.png');
+    background-position:center;
+    background-size:70%;
+    background-repeat: no-repeat;
+}
+
+#pastrami{  
+    background-image: url('/style/pastrami.png');
+    background-position:center;
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+#sprouts{  
+    background-image: url('/style/sprouts.png');
+    background-position:center;
+    background-size:70%;
+    background-repeat: no-repeat;
+}
+
+#usacheese{
+    background-image: url('/style/usacheese.png');
+    background-position:center;
+    background-size:88%;
+    background-repeat: no-repeat;
+}
+
+#cheddar{
+    background-image: url('/style/cheddar.png');
+    background-position:center;
+    background-size:80%;
+    background-repeat: no-repeat;
+}
+
+#swiss{
+    background-image: url('/style/swiss.png');
+    background-position:center;
+    background-size:55%;
+    background-repeat: no-repeat;
+}
+
+#eggs{
+    background-image: url('/style/egg.png');
+    background-position:center;
+    background-size:55%;
+    background-repeat: no-repeat;
+}
+#vegan-egg{
+    background-image: url('/style/veganegg.png');
+    background-position:center;
+    background-size:55%;
+    background-repeat: no-repeat;
+}
+#capers{
+    background-image: url('/style/capers.png');
+    background-position:center;
+    background-size:90%;
+    background-repeat: no-repeat;
+}
+#bagel:hover, #tomato:hover, #eggs:hover, #lox:hover, #onion:hover, #special-schmear:hover,
+#bacon:hover, #cream-cheese:hover, #swiss:hover, #vegan-egg:hover, #usacheese:hover,
+#cheddar:hover, #pastrami:hover, #sprouts:hover, #capers:hover{
+    background-color:#82bda7;
+}
+
+#bagel:active, #tomato:active, #eggs:active, #lox:active, #onion:active, #special-schmear:active,
+#bacon:active, #cream-cheese:active, #swiss:active, #vegan-egg:active, #usacheese:active,
+#cheddar:active, #pastrami:active, #sprouts:active, #capers:active{
+    background-color:#5f7f41;
+    opacity:.7;
+}
