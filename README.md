@@ -38,3 +38,6 @@ I also created a possible introductory/title screen for the game:
   - do not indicate when incorrect selections are selected
   - deduct when incorrect orders placed
 6. Add music or sound effects
+7. Add intro page
+
+
