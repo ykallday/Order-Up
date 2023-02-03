@@ -55,6 +55,8 @@ function chooseSandwich() {
 
 
 function play() {
+    tiptext.innerText = (`Your Tip: $${currentTip}`);
+    currentTip = currentTip + 5;
     totalRounds += 1;
     table.innerText = "";
     chooseSandwich();
@@ -63,13 +65,8 @@ function play() {
             for (let b = 0; b < ingredientsToPick.length; b++) {
                 if (foodButtons[i].innerText === ingredientsToPick[b]) {
                     chosenIngredients.push(ingredientsToPick[b]);
-        
-                    //     let picOfChosen = document.createElement('img');
-                    //      picOfChosen.innerHTML = foodButtons[i].style.backgroundImage;
-                    //      console.log(picOfChosen);
-                    //      workBoard.appendChild(picOfChosen)
-                    // }
                 }}
+            
                 ingredientsToPick.sort();
                 chosenIngredients.sort();
                 finalIngredients = [...new Set(chosenIngredients)]; //removes duplicates
@@ -79,9 +76,12 @@ function play() {
                     } else {
                         checkVal = false;
                         i = ingredientsToPick.length;
+
                     }
                 }
             
+        
+   
                 if (checkVal === true && ingredientsToPick.length === finalIngredients.length) {
                     console.log ("checkval is running")
                     submitButton.style.opacity = 1;
@@ -89,18 +89,17 @@ function play() {
                     submitButton.addEventListener('click', function addTip() {
                         submitButton.style.opacity = .7;
                         submitButton.style.borderColor = "white";
-                        currentTip += 5;
                         chosenIngredients = [];
-                        tiptext.innerText = (`Your Tip: $${currentTip}`);
+                       
                         play();
                     })
 
                 }
+     
             })
-            
-      
     }
 }
+
 // if (totalRounds < 6){
 
 
