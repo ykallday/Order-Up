@@ -90,7 +90,9 @@ li{
     background-position: center; 
     background-size:900px;
     border: 1px solid white;
+    opacity: .5;
 }
+
 
 #orderUp p{
     background-color:#ab1400;
