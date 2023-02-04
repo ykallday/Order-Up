@@ -34,7 +34,8 @@ const sandwiches = [
     { name: 'The Basic', ingredients: ['Bagel', 'Cream Cheese'] },
     { name: 'The Egg, Cheese & Bacon', ingredients: ['Bagel', 'Egg', 'American Cheese', 'Special Sauce', 'Avocado', 'Bacon'] },
     { name: 'The Vegan', ingredients: ['Bagel', 'Avocado', 'Sprouts', 'Tomato', 'Onion', 'Vegan Egg'] },
-    { name: 'The Pastrami Breakfast', ingredients: ['Bagel', 'Pastrami', 'Egg', 'Swiss Cheese', 'Special Sauce'] }
+    { name: 'The Pastrami Breakfast', ingredients: ['Bagel', 'Pastrami', 'Egg', 'Swiss Cheese', 'Special Sauce'] },
+    { name: 'The Bacon-Schmear-Tomato', ingredients: ['Bagel', 'Cream Cheese', 'Tomato' ]}
 ]
 
 //chooses a sandwich from the list, prints its name and ingredients
