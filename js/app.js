@@ -20,12 +20,15 @@ const tip = document.getElementById("tiptext");
 const foodButtons = [bagel, tomato, lox, onion, avocado, special, bacon, creamcheese,
     swiss, egg, vegegg, usa, cheddar, pastrami, sprouts, capers];
 let ingredientsToPick = [];
+let doneIngredient;
 let chosenIngredients = [];
-const workBoard = document.getElementById("current-ingredients");
+let workBoard = document.getElementById("current-ingredients");
+let checkList;
 let currentTip = 0;
 let totalRounds = 0;
+let addedTip = 5;
 let checkVal = false;
-let finalIngredients=[];
+let finalIngredients = [];
 const sandwiches = [
     { name: 'The Classic', ingredients: ['Bagel', 'Cream Cheese', 'Lox', 'Tomato', 'Capers', 'Onion'] },
     { name: 'The Basic', ingredients: ['Bagel', 'Cream Cheese'] },
@@ -36,6 +39,7 @@ const sandwiches = [
 
 //chooses a sandwich from the list, prints its name and ingredients
 function chooseSandwich() {
+    ingredientsToPick=[];
     let choose = Math.floor(Math.random() * sandwiches.length);
     let choice = sandwiches[choose]; //picks sandwich, assigns to choice
     ingredientsToPick = choice.ingredients;
@@ -55,48 +59,60 @@ function chooseSandwich() {
 
 
 function play() {
-    tiptext.innerText = (`Your Tip: $${currentTip}`);
-    currentTip = currentTip + 5;
     totalRounds += 1;
     table.innerText = "";
     chooseSandwich();
+    checkList = document.createElement('ul');
+    workBoard.appendChild(checkList);
     for (let i = 0; i < foodButtons.length; i++) { //checks chosen buttons against winning buttons and adds matching ones to new array
-        foodButtons[i].addEventListener('click', function clickedItems() {
-            for (let b = 0; b < ingredientsToPick.length; b++) {
+        foodButtons[i].addEventListener('click', function clickedItems() {//add event listeners for food buttons
+            for (let b = 0; b < ingredientsToPick.length; b++) {//go through the food buttons and see if they match what was selected
                 if (foodButtons[i].innerText === ingredientsToPick[b]) {
-                    chosenIngredients.push(ingredientsToPick[b]);
-                }}
-            
-                ingredientsToPick.sort();
-                chosenIngredients.sort();
-                finalIngredients = [...new Set(chosenIngredients)]; //removes duplicates
-                for (let i = 0; i < ingredientsToPick.length; i++) {
-                    if (ingredientsToPick[i] === finalIngredients[i]) {
-                        checkVal = true;//if every element in our new array is selected, 
-                    } else {
-                        checkVal = false;
-                        i = ingredientsToPick.length;
-
-                    }
+                    chosenIngredients.push(ingredientsToPick[b]);  //add to array
+                    doneIngredient = document.createElement("li");
+                    doneIngredient.innerText = ingredientsToPick[b];
+                    checkList.appendChild(doneIngredient);
                 }
-            
-        
-   
-                if (checkVal === true && ingredientsToPick.length === finalIngredients.length) {
-                    console.log ("checkval is running")
-                    submitButton.style.opacity = 1;
-                    submitButton.style.borderColor = "red";
-                    submitButton.addEventListener('click', function addTip() {
-                        submitButton.style.opacity = .7;
-                        submitButton.style.borderColor = "white";
-                        chosenIngredients = [];
-                       
-                        play();
-                    })
+            }
+
+            ingredientsToPick.sort();//sort them
+            chosenIngredients.sort();
+            finalIngredients = [...new Set(chosenIngredients)]; //removes duplicates //referenced w3
+            for (let i = 0; i < ingredientsToPick.length; i++) {
+                if (ingredientsToPick[i] === finalIngredients[i]) { //if they are the same
+                    checkVal = true;
+                } else {
+                    checkVal = false;
+                    i = ingredientsToPick.length;
 
                 }
-     
-            })
+            }
+
+
+
+            if (checkVal === true && ingredientsToPick.length === finalIngredients.length) {
+                submitButton.style.opacity = 1;
+                submitButton.style.borderColor = "red";
+                submitButton.addEventListener('click', function addTip() {
+                    submitButton.style.opacity = .7;
+                    submitButton.style.borderColor = "white";
+                    checkList.removeChild(doneIngredient);
+                    workBoard.removeChild(checkList);
+                    play();
+                    
+                })
+                if (addedTip <= currentTip || currentTip == 0) {
+                    currentTip += addedTip;
+                    tiptext.innerText = (`Your Tip: $${currentTip}`);
+                    finalIngredients=[];
+                    chosenIngredients=[];
+                    
+                }
+
+
+            }
+
+        })
     }
 }
 
