@@ -1,7 +1,7 @@
 body{
     background-color: #2c3d1c;
     cursor: url('/order-up/style/hand.png'), auto;
-   font-family:'Patrick Hand SC', cursive;
+    font-family:'Patrick Hand SC', cursive;
 }
 ul{
     margin-top:0px;
@@ -43,6 +43,7 @@ li{
     padding-top:15px;
     padding-left: 4px;
     display:inline;
+    border-radius:20px;
 }
 
 #current-ingredients ul li{
@@ -53,20 +54,6 @@ li{
     font-size: 40px;
     
 }
-/*referenced mdn for slide effect and modified direction*/
-/* @keyframes slidedown {
-    from {
-      margin-top: -5%;
-      width: 100%;
-    }
-  
-    to {
-      margin-top: 6%;
-      width: 100%;
-    }
-  } */
-
-
 
 #upperText{
     grid-row: 1/span 3;
