@@ -92,11 +92,11 @@ submitButton.addEventListener('click', function addTip() {
         chosenIngredients=[];
         checkList.remove();
         ingredientsToPick=[];
-        if (totalRounds < 6){
+        if (totalRounds < 2){
         play();
         }
         else {
             table.innerText=(`You've done well! The lunch rush will be here soon. Do you want to continue, or take your $${currentTip} and clock out?`);
-        
+
       }  }   
 })

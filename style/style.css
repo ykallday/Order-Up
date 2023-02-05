@@ -1,14 +1,14 @@
 body{
     background-color: #2c3d1c;
     cursor: url('/order-up/style/hand.png'), auto;
-    font-family:'Patrick Hand SC', cursive;
+    font-family: 'Reenie Beanie', cursive;
 }
 ul{
-    margin-top:0px;
+    margin-top:10px;
     padding-left:0;
 }
 li{
-    font-size: 50%;
+    font-size: 70%;
     list-style-type: none;
     padding-left:0;
 
@@ -50,8 +50,8 @@ li{
     display:inline;
     padding-left:4px;
     padding-right: 20px;
-    font-family:'Patrick Hand SC', cursive;
-    font-size: 40px;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 50px;
     
 }
 
@@ -104,7 +104,7 @@ li{
     text-align:center;
     margin: 0 auto;
     color:white;
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: 'Reenie Beanie', cursive;
     border-radius: 50px;
     font-size: 60px;
     
@@ -131,7 +131,7 @@ li{
     font-size: 50px;
     margin-top: 1%;
     padding:4px;
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: 'Reenie Beanie', cursive;
     border-radius: 50px;
     
 }
