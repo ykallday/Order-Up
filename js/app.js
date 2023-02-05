@@ -59,6 +59,7 @@ function checkIngredientExist(current){
 }
 
 function play() {
+    totalRounds += 1;
     table.innerText = "";
     chooseSandwich();
     checkList = document.createElement('ul'); //create new list
@@ -91,6 +92,11 @@ submitButton.addEventListener('click', function addTip() {
         chosenIngredients=[];
         checkList.remove();
         ingredientsToPick=[];
+        if (totalRounds < 6){
         play();
-    }
+        }
+        else {
+            table.innerText=(`You've done well! The lunch rush will be here soon. Do you want to continue, or take your $${currentTip} and clock out?`);
+        
+      }  }   
 })
