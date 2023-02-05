@@ -1,6 +1,8 @@
-//get
 let table = document.querySelector("#upperText");
 let continueCheck;
+let iQuit;
+let goHome;
+let keepWorking;
 let cellbuttons = document.querySelectorAll('.cell');
 let foodButtons = Array.from(cellbuttons);
 const submitButton = document.getElementById("orderUp");
@@ -78,37 +80,47 @@ function play() {
         
                 }
             }
-        }) }
+        }) 
+    }
+
 }
 
-table.addEventListener('click', play);
-
 function continuePlayCheck(){
-    if (totalRounds < 6){
+    if (totalRounds < 1){
         play();
     } else {
         table.innerText="";
         continueCheck = document.createElement('p');
         continueCheck.innerText=(`You've done well! The lunch rush will be here soon. Do you want to continue, or take your $${currentTip} and clock out?`);
         table.appendChild(continueCheck);
-        let keepWorking = document.createElement("BUTTON");
+        keepWorking = document.createElement("BUTTON");
         keepWorking.innerText = "Keep Working";
-        table.appendChild(keepWorking);
-        let goHome = document.createElement("BUTTON");
+        goHome = document.createElement("BUTTON");
         goHome.innerText = "Go Home";
+        table.appendChild(keepWorking);
         table.appendChild(goHome);
         keepWorking.addEventListener('click', function playReset(){
-            totalRounds =0;
+            totalRounds = 0;
             play();
+        })
+        goHome.addEventListener('click', function endGame(){
+            console.log("gohome")
+            table.innerText="";
+            iQuit = document.createElement('p');
+            iQuit.innerText=`The shop is closed! Enjoy your $${currentTip}!`;
+            table.appendChild(iQuit);
+            console.log("bottom")
         });
-        goHome.addEventListener('click', function endGame (){
-            table.innerText = "";
-            continueCheck.innerText = (`The shop is closed! Enjoy your $${currentTip}!`);
-            })
-        }
     }
+}
 
-submitButton.addEventListener('click', function addTip() {
+
+
+
+
+table.addEventListener('click', play);
+
+submitButton.addEventListener('click', function addTip(){
     submitButton.style.opacity = .7;
     submitButton.style.borderColor = "white";
     if (ingredientsToPick.length === chosenIngredients.length){
@@ -120,4 +132,5 @@ submitButton.addEventListener('click', function addTip() {
         continuePlayCheck();
 }
 })
+
 
