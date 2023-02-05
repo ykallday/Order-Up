@@ -1,5 +1,6 @@
 //get
-const table = document.querySelector("#upperText");
+let table = document.querySelector("#upperText");
+let continueCheck;
 let cellbuttons = document.querySelectorAll('.cell');
 let foodButtons = Array.from(cellbuttons);
 const submitButton = document.getElementById("orderUp");
@@ -80,8 +81,32 @@ function play() {
         }) }
 }
 
-
 table.addEventListener('click', play);
+
+function continuePlayCheck(){
+    if (totalRounds < 6){
+        play();
+    } else {
+        table.innerText="";
+        continueCheck = document.createElement('p');
+        continueCheck.innerText=(`You've done well! The lunch rush will be here soon. Do you want to continue, or take your $${currentTip} and clock out?`);
+        table.appendChild(continueCheck);
+        let keepWorking = document.createElement("BUTTON");
+        keepWorking.innerText = "Keep Working";
+        table.appendChild(keepWorking);
+        let goHome = document.createElement("BUTTON");
+        goHome.innerText = "Go Home";
+        table.appendChild(goHome);
+        keepWorking.addEventListener('click', function playReset(){
+            totalRounds =0;
+            play();
+        });
+        goHome.addEventListener('click', function endGame (){
+            table.innerText = "";
+            continueCheck.innerText = (`The shop is closed! Enjoy your $${currentTip}!`);
+            })
+        }
+    }
 
 submitButton.addEventListener('click', function addTip() {
     submitButton.style.opacity = .7;
@@ -91,12 +116,8 @@ submitButton.addEventListener('click', function addTip() {
         tiptext.innerText = (`Your Tip: $${currentTip}`);
         chosenIngredients=[];
         checkList.remove();
-        ingredientsToPick=[];
-        if (totalRounds < 2){
-        play();
-        }
-        else {
-            table.innerText=(`You've done well! The lunch rush will be here soon. Do you want to continue, or take your $${currentTip} and clock out?`);
-
-      }  }   
+        ingredientsToPick=[]; 
+        continuePlayCheck();
+}
 })
+

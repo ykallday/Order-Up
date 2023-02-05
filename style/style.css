@@ -37,6 +37,7 @@ li{
     opacity:0;
 }
 
+
 #current-ingredients{
     grid-column: 2/span 4;
     background-color:white;   
@@ -75,8 +76,7 @@ li{
     font-size: 60px;
     color:white;
     text-align:center;
-    padding-left:20px;
-
+    padding:0px 60px;
     
 }
 
@@ -129,7 +129,7 @@ li{
     margin: 0 auto;
     color:white;
     font-size: 50px;
-    margin-top: 1%;
+    margin-top: .5em;
     padding:4px;
     font-family: 'Reenie Beanie', cursive;
     border-radius: 50px;
@@ -256,4 +256,9 @@ li{
 #cheddar:active, #pastrami:active, #sprouts:active, #capers:active, #avocado:active{
     background-color:#5f7f41;
     opacity:.7;
+}
+
+#errorCell:active{
+    background-color:red;
+    opacity: .7;
 }
