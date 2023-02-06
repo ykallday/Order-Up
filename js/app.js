@@ -100,16 +100,22 @@ function playReset(){
 }
 
 function endGame(){
-    console.log("gohome")
     table.innerText="";
     iQuit = document.createElement('p');
-    iQuit.innerText=`The shop is closed! Enjoy your $${currentTip}!`;
+    iQuit.innerText=`The shop is closed!`;
+    let enjoyTip = document.createElement('p');
+    enjoyTip.innerText= `Enjoy your $${currentTip}!`;
+    const closedSign = document.createElement('img');
+    closedSign.src='/order-up/style/closedsign.png';
+    closedSign.setAttribute('id', 'closedSignIMG');
     restartButton = document.createElement('BUTTON');
     restartButton.innerText = "Replay";
+    restartButton.setAttribute('id', 'restartButton');
     restartButton.addEventListener('click', playReset);
     table.appendChild(iQuit);
+    table.appendChild(closedSign);
+    table.appendChild(enjoyTip);
     table.appendChild(restartButton);
-    console.log("bottom")
 }
 
 function continuePlayCheck(){

@@ -18,6 +18,9 @@ button{
     font-size:300%;
     margin: 10px;
 }
+
+
+
 .grid-container{
     display:grid;
     border-radius: 20px;
@@ -42,7 +45,21 @@ button{
     opacity:0;
 }
 
+#restartButton{
+    margin-top: -10%;
+}
 
+
+#closedSignIMG{
+    width: 15%;
+    display:block;
+    margin: 0 auto;
+    margin-top: -40px;
+}
+#openShop{
+    font-size:60px;
+    margin-top:50px;
+}
 #current-ingredients{
     grid-column: 2/span 4;
     background-color:white;   
@@ -101,6 +118,7 @@ button{
     background-size:900px;
     border: 1px solid white;
     opacity: .5;
+    margin: 0px;
 }
 
 #orderUp p{
