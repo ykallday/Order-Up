@@ -15,6 +15,7 @@ let chosenIngredients = [];
 let workBoard = document.getElementById("current-ingredients");
 let checkList;
 let currentTip = 0;
+let addedTip = 5;
 let totalRounds = 0;
 let checkVal = true;
 let finalIngredients = [];
@@ -65,8 +66,11 @@ function checkIngredientExist(current){
 
 function play() {
     totalRounds += 1;
+    addedTip = 5;
     table.innerText = "";
     chooseSandwich();
+    setInterval(timedTips, 5000);
+    clearInterval();
     checkList = document.createElement('ul'); //create new list
     workBoard.appendChild(checkList); //add it to workspace
     for (let i = 0; i < foodButtons.length; i++) { //checks chosen buttons against winning buttons and adds matching ones to new array
@@ -74,7 +78,6 @@ function play() {
             for (let b = 0; b < ingredientsToPick.length; b++) {//go through the food buttons and see if they match what was selected
                 if (foodButtons[i].innerText === ingredientsToPick[b]) {
                     checkIngredientExist(ingredientsToPick[b]);
-                    console.log(ingredientsToPick.length, chosenIngredients.length)
                     if (ingredientsToPick.length === chosenIngredients.length) {
                         submitButton.style.opacity = 1;
                         submitButton.style.borderColor = "red";
@@ -88,6 +91,7 @@ function play() {
 }
 
 function playMore(){
+    addedTip = 5;
     totalRounds = 0;
     play();
 }
@@ -119,8 +123,7 @@ function endGame(){
 }
 
 function continuePlayCheck(){
-    if (totalRounds < 1){
-        console.log (totalRounds);
+    if (totalRounds < 5){
         play();
     } else {
         table.innerText="";
@@ -148,7 +151,8 @@ submitButton.addEventListener('click', function addTip(){
     submitButton.style.opacity = .7;
     submitButton.style.borderColor = "white";
     if (ingredientsToPick.length === chosenIngredients.length){
-        currentTip+=5;
+        console.log(addedTip);
+        currentTip+=addedTip;
         tiptext.innerText = (`Your Tip: $${currentTip}`);
         chosenIngredients=[];
         checkList.remove();
@@ -158,3 +162,12 @@ submitButton.addEventListener('click', function addTip(){
 })
 
 
+function timedTips(){
+    if (addedTip > 1){
+        console.log(addedTip - 1);
+        return addedTip -= 1;
+    } else {
+         
+         return addedTip = 1;
+}
+}
