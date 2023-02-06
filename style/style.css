@@ -12,6 +12,12 @@ li{
     padding-left:0;
 
 }
+
+button{
+    font-family:'Reenie Beanie', cursive;
+    font-size:300%;
+    margin: 10px;
+}
 .grid-container{
     display:grid;
     border-radius: 20px;

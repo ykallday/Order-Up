@@ -1,4 +1,6 @@
 let table = document.querySelector("#upperText");
+let startButton = document.querySelector("openShop");
+let restartButton;
 let continueCheck;
 let iQuit;
 let goHome;
@@ -85,8 +87,34 @@ function play() {
 
 }
 
+function playMore(){
+    totalRounds = 0;
+    play();
+}
+
+function playReset(){
+    totalRounds = 0;
+    currentTip = 0;
+    tiptext.innerText = (`Your Tip: $${currentTip}`);
+    play();
+}
+
+function endGame(){
+    console.log("gohome")
+    table.innerText="";
+    iQuit = document.createElement('p');
+    iQuit.innerText=`The shop is closed! Enjoy your $${currentTip}!`;
+    restartButton = document.createElement('BUTTON');
+    restartButton.innerText = "Replay";
+    restartButton.addEventListener('click', playReset);
+    table.appendChild(iQuit);
+    table.appendChild(restartButton);
+    console.log("bottom")
+}
+
 function continuePlayCheck(){
     if (totalRounds < 1){
+        console.log (totalRounds);
         play();
     } else {
         table.innerText="";
@@ -99,18 +127,8 @@ function continuePlayCheck(){
         goHome.innerText = "Go Home";
         table.appendChild(keepWorking);
         table.appendChild(goHome);
-        keepWorking.addEventListener('click', function playReset(){
-            totalRounds = 0;
-            play();
-        })
-        goHome.addEventListener('click', function endGame(){
-            console.log("gohome")
-            table.innerText="";
-            iQuit = document.createElement('p');
-            iQuit.innerText=`The shop is closed! Enjoy your $${currentTip}!`;
-            table.appendChild(iQuit);
-            console.log("bottom")
-        });
+        keepWorking.addEventListener('click', playMore);
+        goHome.addEventListener('click', endGame);
     }
 }
 
@@ -118,7 +136,7 @@ function continuePlayCheck(){
 
 
 
-table.addEventListener('click', play);
+openShop.addEventListener('click', play);
 
 submitButton.addEventListener('click', function addTip(){
     submitButton.style.opacity = .7;
