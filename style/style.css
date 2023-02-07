@@ -87,6 +87,8 @@ button{
     border-radius:20px;
     border: 1px solid white;
     text-align:center;
+    min-height: 40vh;
+    max-height: 45vh;
     /* animation-name: slidedown;
     animation-duration:2s;
      */
@@ -284,6 +286,7 @@ button{
 
 
 #timer{
+    display:fixed;
     float:right;
     font-size:4em;
     background-color:bisque;
