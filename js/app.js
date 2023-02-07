@@ -5,6 +5,8 @@ let continueCheck;
 let iQuit;
 let goHome;
 let keepWorking;
+let timeLeft = 30;
+let noTimeLeft;
 let cellbuttons = document.querySelectorAll('.cell');
 let foodButtons = Array.from(cellbuttons);
 const submitButton = document.getElementById("orderUp");
@@ -19,6 +21,7 @@ let addedTip = 5;
 let totalRounds = 0;
 let checkVal = true;
 let finalIngredients = [];
+let level = 0;
 const sandwiches = [
     { name: 'The Classic', ingredients: ['Bagel', 'Cream Cheese', 'Lox', 'Tomato', 'Capers', 'Onion'] },
     { name: 'The Basic', ingredients: ['Bagel', 'Cream Cheese'] },
@@ -69,8 +72,15 @@ function play() {
     addedTip = 5;
     table.innerText = "";
     chooseSandwich();
-    setInterval(timedTips, 5000);
-    clearInterval();
+    if (level === 1){
+        setUpTimer();
+        setInterval(levelOneTimer, 1000);
+        clearInterval();
+    }
+    else if (level === 2 && totalRounds < 5){
+        setInterval(timedTips, 5000);
+        clearInterval();
+    } 
     checkList = document.createElement('ul'); //create new list
     workBoard.appendChild(checkList); //add it to workspace
     for (let i = 0; i < foodButtons.length; i++) { //checks chosen buttons against winning buttons and adds matching ones to new array
@@ -86,19 +96,22 @@ function play() {
                 }
             }
         }) 
-    }
+}
 
 }
 
 function playMore(){
-    addedTip = 5;
+    addedTip = 5; 
+    level += 1;
     totalRounds = 0;
     play();
+ 
 }
 
 function playReset(){
     totalRounds = 0;
     currentTip = 0;
+    level = 0;
     tiptext.innerText = (`Your Tip: $${currentTip}`);
     play();
 }
@@ -123,12 +136,19 @@ function endGame(){
 }
 
 function continuePlayCheck(){
-    if (totalRounds < 5){
+    if (timeLeft > 0 && level == 1 || totalRounds < 5 && level === 2 || level === 0 && totalRounds < 5){
         play();
     } else {
         table.innerText="";
         continueCheck = document.createElement('p');
-        continueCheck.innerText=(`You've done well! The lunch rush will be here soon. Do you want to continue, or take your $${currentTip} and clock out?`);
+        if (level === 0){
+            continueCheck.innerText=(`You've done well, but the lunch rush is coming! In the next level, you'll only have 30 seconds to make as many sandwiches as possible. Do you want to continue, or take your $${currentTip} and clock out?`);}
+        else if (level === 1){
+            continueCheck.innerText = (`Great work! You've got an early bird dinner rush coming in. They are impatient, and your speed will matter. They'll tip lower for slow service. Do you want to continue, or take your $${currentTip} and clock out?`);
+        }else if (level === 2){
+            endGame();
+            return;
+        }
         table.appendChild(continueCheck);
         keepWorking = document.createElement("BUTTON");
         keepWorking.innerText = "Keep Working";
@@ -141,9 +161,37 @@ function continuePlayCheck(){
     }
 }
 
+function setUpTimer(){
+    let timerSpot = document.createElement('div');
+    timerSpot.setAttribute('id', 'timer');
+    timerSpot.innerText = timeLeft;
+    table.appendChild(timerSpot);
+}
 
 
+function levelOneTimer(){
+    if (timeLeft > 0 && level === 1){
+        timeLeft -=1;
+        timerSpot.innerText = timeLeft;
+        }
+    if (timeLeft <= 0){
+        timerSpot.innerText = "Time's Up!";
+        level = 2;
+        clearInterval();
+        continuePlayCheck();
+        
+    }
+}
 
+function timedTips(){
+    if (addedTip > 1){
+        console.log(addedTip - 1);
+        return addedTip -= 1;
+    } else {
+         
+         return addedTip = 1;
+}
+}
 
 openShop.addEventListener('click', play);
 
@@ -161,13 +209,3 @@ submitButton.addEventListener('click', function addTip(){
 }
 })
 
-
-function timedTips(){
-    if (addedTip > 1){
-        console.log(addedTip - 1);
-        return addedTip -= 1;
-    } else {
-         
-         return addedTip = 1;
-}
-}

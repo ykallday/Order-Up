@@ -282,7 +282,13 @@ button{
     opacity:.7;
 }
 
-#errorCell:active{
-    background-color:red;
-    opacity: .7;
+
+#timer{
+    float:right;
+    font-size:4em;
+    background-color:bisque;
+    border-radius: 50%;
+    width:70px;
+    margin-right:20px;
+    margin-bottom:20px;
 }
