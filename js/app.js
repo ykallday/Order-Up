@@ -128,8 +128,6 @@ function endGame(){
     table.innerText="";
     iQuit = document.createElement('p');
     iQuit.innerText=`Great work. You made $${currentTip} in tips! The shop is now closed!`;
-    let enjoyTip = document.createElement('p');
-    enjoyTip.innerText= `Enjoy your $${currentTip}!`;
     const closedSign = document.createElement('img');
     closedSign.src='/order-up/style/closedsign.png';
     closedSign.setAttribute('id', 'closedSignIMG');
@@ -139,7 +137,6 @@ function endGame(){
     restartButton.addEventListener('click', playReset);
     table.appendChild(iQuit);
     table.appendChild(closedSign);
-    table.appendChild(enjoyTip);
     table.appendChild(restartButton);
     level=0;
 }
