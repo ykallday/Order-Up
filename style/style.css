@@ -2,6 +2,13 @@ body{
     background-color: #2c3d1c;
     font-family: 'Reenie Beanie', cursive;
 }
+audio{
+    position:absolute;
+    right: 0;
+    width:10%;
+
+
+}
 ul{
     margin-top:10px;
     padding-left:0;
@@ -286,15 +293,21 @@ button{
 
 
 #timer{
-    float:right;
+    display:none;
+    position:absolute;
+    top:4%;
+    left:8%;
     font-size:4em;
-    background-color:bisque;
+    background-color:white;
     border-radius: 50%;
     width:70px;
-    margin-right:20px;
-    margin-bottom:20px;
+    height:70px;
+    text-align:center;
 }
 
+#bag1, #bag2, #chaching{
+    display:hidden;
+}
 /* @media screen and (max-width = 400px){
     .grid-container{
         width:100%;
