@@ -21,6 +21,21 @@ let addedTip = 5;
 let totalRounds = 0;
 let checkVal = true;
 let level = 1;
+const backgroundNoise = document.createElement("audio");
+backgroundNoise.src = "./sounds/mixkit-restaurant-crowd-talking-ambience-444.wav"
+backgroundNoise.volume=0.2;
+const moneyBag = document.createElement("audio");
+moneyBag.src = "./sounds/mixkit-money-bag-drop-1989.wav";
+moneyBag.volume=0.4;
+const sliceSammy = document.createElement("audio");
+sliceSammy.src = "./sounds/mixkit-paper-quick-slice-2384.wav";
+sliceSammy.volume = 0.4;
+const bagSammy = document.createElement("audio");
+bagSammy.src = "./sounds/mixkit-paper-crumble-2382.wav";
+bagSammy.volume = 0.4;
+bagSammy.delay= 2000;
+
+
 
 //array of sandwich objects, which each have an array of ingredients
 const sandwiches = [
@@ -29,17 +44,17 @@ const sandwiches = [
     { name: 'The Egg, Cheese & Bacon', ingredients: ['Bagel', 'Egg', 'American Cheese', 'Special Sauce', 'Avocado', 'Bacon'] },
     { name: 'The Vegan', ingredients: ['Bagel', 'Avocado', 'Sprouts', 'Tomato', 'Onion', 'Vegan Egg'] },
     { name: 'The Pastrami Breakfast', ingredients: ['Bagel', 'Pastrami', 'Egg', 'Swiss Cheese', 'Special Sauce'] },
-    { name: 'The Bacon-Schmear-Tomato', ingredients: ['Bagel', 'Tomato', 'Cream Cheese','Bacon' ]},
-    { name: 'Custom Order', ingredients: ['Bagel', 'Avocado', 'Tomato', 'Bacon' ]},
-    { name: 'Custom Order', ingredients: ['Bagel', 'Egg', 'Tomato', 'American Cheese', 'Cheddar Cheese' ]},
-    { name: 'Custom Order', ingredients: ['Bagel', 'Tomato', 'Onion', 'Cream Cheese','Bacon' ]},
-    { name: 'Custom Order', ingredients: ['Bagel', 'Cream Cheese', 'Lox']},
-    { name: 'Reuben-Ish', ingredients: ['Bagel', 'Pastrami', 'Swiss Cheese', 'Special Sauce']}
+    { name: 'The Bacon-Schmear-Tomato', ingredients: ['Bagel', 'Tomato', 'Cream Cheese', 'Bacon'] },
+    { name: 'Custom Order', ingredients: ['Bagel', 'Avocado', 'Tomato', 'Bacon'] },
+    { name: 'Custom Order', ingredients: ['Bagel', 'Egg', 'Tomato', 'American Cheese', 'Cheddar Cheese'] },
+    { name: 'Custom Order', ingredients: ['Bagel', 'Tomato', 'Onion', 'Cream Cheese', 'Bacon'] },
+    { name: 'Custom Order', ingredients: ['Bagel', 'Cream Cheese', 'Lox'] },
+    { name: 'Reuben-Ish', ingredients: ['Bagel', 'Pastrami', 'Swiss Cheese', 'Special Sauce'] }
 ]
 
 //chooses a sandwich from the list, prints its name and ingredients
 function chooseSandwich() {
-    ingredientsToPick=[]; //creates empty array of solution ingredients
+    ingredientsToPick = []; //creates empty array of solution ingredients
     let choose = Math.floor(Math.random() * sandwiches.length); //selects index
     let choice = sandwiches[choose]; //selects sandwich using index, assigns to choice
     ingredientsToPick = choice.ingredients; //fills ingredientsToPick with sandwich's ingredients
@@ -56,16 +71,16 @@ function chooseSandwich() {
 
 }
 
-function checkIngredientExist(current){ //prevents multiples of same correct ingredient
-    checkVal=true;
-    for (let i = 0; i < chosenIngredients.length; i++){
-        if (current === chosenIngredients[i]){
+function checkIngredientExist(current) { //prevents multiples of same correct ingredient
+    checkVal = true;
+    for (let i = 0; i < chosenIngredients.length; i++) {
+        if (current === chosenIngredients[i]) {
             return checkVal = false; //if our current chosen ingredient is the same as any ingredient we've already chosen, return false
-        } else{
+        } else {
             checkVal = true; //if we haven't selected it before, return true
         }
     }
-    if (checkVal){ //if we haven't selected it before
+    if (checkVal) { //if we haven't selected it before
         chosenIngredients.push(current);  //add to our array of chosen ingredients
         doneIngredient = document.createElement("li"); //create list item
         doneIngredient.innerText = current; //assign it to the value of the current selected ingredient
@@ -74,21 +89,20 @@ function checkIngredientExist(current){ //prevents multiples of same correct ing
 }
 
 function playGame() {
+    
+    backgroundNoise.play();
     totalRounds += 1; //increase round count
-    console.log("totalRounds " + totalRounds);
     addedTip = 5; //assign tip value
     table.innerText = ""; //clear table
-    chooseSandwich(); 
-    if (level === 2){ 
+    chooseSandwich();
+    if (level === 2) {
         setUpTimer();
         setInterval(levelTwoTimer, 1000);
-        clearInterval();
     }
-    if (level === 3 && totalRounds < 5){
+    if (level === 3 && totalRounds < 5) {
         setInterval(timedTips, 5000);
         clearInterval();
-    } 
-    console.log("current level  " + level);
+    }
     checkList = document.createElement('ul'); //create new list
     workBoard.appendChild(checkList); //add it to workspace
     for (let i = 0; i < foodButtons.length; i++) { //checks chosen buttons against winning buttons and adds matching ones to new array
@@ -100,24 +114,22 @@ function playGame() {
                         submitButton.style.opacity = 1;
                         submitButton.style.borderColor = "red";
                     }
-        
+
                 }
             }
-        }) 
-}
+        })
+    }
 
 }
 
-function playMore(){
-    console.log("passed level " + level);
-    addedTip = 5; 
+function playMore() {
+    addedTip = 5;
     level += 1;
-    console.log("new level " + level);
     totalRounds = 0;
     playGame();
 }
 
-function playReset(){
+function playReset() { //reset all values to restart game
     totalRounds = 0;
     currentTip = 0;
     level = 1;
@@ -125,41 +137,40 @@ function playReset(){
     playGame();
 }
 
-function endGame(){
-    console.log("endgame triggered");
-    table.innerText="";
+function endGame() {
+    table.innerText = "";
+    level=3;
     iQuit = document.createElement('p');
-    iQuit.innerText=`Great work. You made $${currentTip} in tips! The shop is now closed!`;
+    iQuit.innerText = `Great work. You made $${currentTip} in tips! The shop is now closed!`;
     const closedSign = document.createElement('img');
-    closedSign.src='/order-up/style/closedsign.png';
+    closedSign.src = '/order-up/style/closedsign.png';
     closedSign.setAttribute('id', 'closedSignIMG');
     restartButton = document.createElement('BUTTON');
     restartButton.innerText = "Replay";
     restartButton.setAttribute('id', 'restartButton');
-    restartButton.addEventListener('click', playReset);
+    restartButton.addEventListener('click', playReset); //triggers reset function
     table.appendChild(iQuit);
     table.appendChild(closedSign);
     table.appendChild(restartButton);
-    level=1;
-    
-    
+    moneyBag.play();
 }
 
 
-function continuePlayCheck(){
+function continuePlayCheck() {
     checkList.remove();
-    chosenIngredients=[];
-    ingredientsToPick=[]; 
-    if (timeLeft > 0 && level == 2 || totalRounds < 5 && level === 3 || level === 1 && totalRounds < 5){
+    chosenIngredients = [];
+    ingredientsToPick = [];
+    if (timeLeft > 0 && level == 2 || totalRounds < 5 && level === 3 || level === 1 && totalRounds < 5) {
         playGame();
     } else {
-        table.innerText="";
+        table.innerText = "";
         continueCheck = document.createElement('p');
-        if (level === 1){
-            continueCheck.innerText=(`You've done well, but the lunch rush is coming! In the next level, you'll only have 30 seconds to make as many sandwiches as possible. Do you want to continue, or take your $${currentTip} and clock out?`);}
-        else if (level === 2){
+        if (level === 1) {
+            continueCheck.innerText = (`You've done well, but the lunch rush is coming! In the next level, you'll only have 30 seconds to make as many sandwiches as possible. Do you want to continue, or take your $${currentTip} and clock out?`);
+        }
+        else if (level === 2) {
             continueCheck.innerText = (`Great work! You've got an early bird dinner rush coming in. They are impatient, and your speed will matter. They'll tip lower for slow service. Do you want to continue, or take your $${currentTip} and clock out?`);
-        }else if (level === 3 && totalRounds >=5){
+        } else if (level === 3 && totalRounds >= 5) {
             return endGame();
         }
         table.appendChild(continueCheck);
@@ -174,49 +185,51 @@ function continuePlayCheck(){
     }
 }
 
-function setUpTimer(){
+function setUpTimer() {
     timerSpot.innerText = timeLeft;
-    timerSpot.style.display="block";
-    
+    timerSpot.style.display = "block";
 }
 
 
-function levelTwoTimer(){
-    if (timeLeft > 0 && level === 2){
-        timeLeft -=1;
+function levelTwoTimer() {
+    if (timeLeft > 0 && level === 2) {
+        timeLeft -= 1;
         timerSpot.innerText = timeLeft;
-        }
+    }
 
-    if (timeLeft <= 0 && level === 2){
+    if (timeLeft <= 0 && level === 2) {
         timeLeft = 0;
         clearInterval();
         timerSpot.style.display = "none";
-        checkList.remove();
-        continuePlayCheck();  
+        continuePlayCheck();
     }
 
 }
 
-function timedTips(){
-    if (addedTip > 1){
+function timedTips() {
+    if (addedTip > 1) {
         return addedTip -= 1;
     } else {
-         return addedTip = 1;
-}
+        return addedTip = 1;
+    }
 }
 
 openShop.addEventListener('click', playGame);
 
-submitButton.addEventListener('click', function addTip(){
+submitButton.addEventListener('click', function addTip() {
+        
     submitButton.style.opacity = .7;
     submitButton.style.borderColor = "white";
-    if (ingredientsToPick.length === chosenIngredients.length){
-        console.log(addedTip);
-        currentTip+=addedTip;
+    if (ingredientsToPick.length === chosenIngredients.length) {
+        sliceSammy.play();
+        setTimeout(function(){ 
+            bagSammy.play();
+            }, 400)
+        currentTip += addedTip;
         tiptext.innerText = (`Your Tip: $${currentTip}`);
-        chosenIngredients=[];
-        ingredientsToPick=[]; 
+        chosenIngredients = [];
+        ingredientsToPick = [];
         continuePlayCheck();
-}
+    }
 })
 
