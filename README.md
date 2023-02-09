@@ -39,4 +39,5 @@ I also created a possible introductory/title screen for the game:
 5. Add music or sound effects
 
 
-This game is live at: a-bagel-a-day.surge.sh
+## Link
+This game is now live. Play it: https://a-bagel-a-day.surge.sh/
