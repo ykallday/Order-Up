@@ -34,6 +34,12 @@ const bagSammy = document.createElement("audio");
 bagSammy.src = "./sounds/mixkit-paper-crumble-2382.wav";
 bagSammy.volume = 0.4;
 bagSammy.delay= 2000;
+// const timerBeep = document.createElement("audio");
+// timerBeep.src ="./sounds/mixkit-censorship-beep-1082.wav"
+// timerBeep.volume= 0.5;
+const clickTime = document.createElement("audio");
+clickTime.src='./sounds/mixkit-tick-tock-clock-close-up-1059.wav';
+clickTime.volume=0.5;
 
 
 
@@ -162,7 +168,8 @@ function continuePlayCheck() {
     ingredientsToPick = [];
     if (timeLeft > 0 && level == 2 || totalRounds < 5 && level === 3 || level === 1 && totalRounds < 5) {
         playGame();
-    } else {
+    }
+    else {
         table.innerText = "";
         continueCheck = document.createElement('p');
         if (level === 1) {
@@ -195,11 +202,13 @@ function levelTwoTimer() {
     if (timeLeft > 0 && level === 2) {
         timeLeft -= 1;
         timerSpot.innerText = timeLeft;
+        clickTime.play();
     }
 
     if (timeLeft <= 0 && level === 2) {
         timeLeft = 0;
         clearInterval();
+        clickTime.pause();
         timerSpot.style.display = "none";
         continuePlayCheck();
     }
