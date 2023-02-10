@@ -40,4 +40,4 @@ I also created a possible introductory/title screen for the game:
 
 
 ## Link
-This game is now live. Play it: https://a-bagel-a-day.surge.sh/
+This game is now live. Play it: https://order-up.surge.sh/
