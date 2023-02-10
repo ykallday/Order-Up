@@ -149,7 +149,7 @@ function endGame() {
     iQuit = document.createElement('p');
     iQuit.innerText = `Great work. You made $${currentTip} in tips! The shop is now closed!`;
     const closedSign = document.createElement('img');
-    closedSign.src = '/order-up/style/closedsign.png';
+    closedSign.src = '/style/closedsign.png';
     closedSign.setAttribute('id', 'closedSignIMG');
     restartButton = document.createElement('BUTTON');
     restartButton.innerText = "Replay";
